@@ -1,0 +1,16 @@
+# Operating system
+/.DS_Store
+
+# IDE config files, see https://github.com/github/gitignore/blob/master/Global/JetBrains.gitignore
+# User-specific stuff
+/.idea
+
+# php unit
+/.phpunit.result.cache
+
+# composer files
+/vendor/
+/composer.lock
+
+# Cache and logs (Symfony2)
+/var/

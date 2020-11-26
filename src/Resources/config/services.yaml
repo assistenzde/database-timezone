@@ -1,0 +1,10 @@
+services:
+
+  Assistenzde\DatabaseTimezoneBundle\Event\KernelEvent:
+    class: Assistenzde\DatabaseTimezoneBundle\Event\KernelEvent
+    arguments:
+      - '%database_timezone.database%'
+    tags:
+      - { name: kernel.event_listener, event: kernel.request,  method: updateKernelTimezone }
+      - { name: kernel.event_listener, event: console.command, method: updateKernelTimezone }
+    public: false
