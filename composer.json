@@ -1,6 +1,6 @@
 {
     "name": "assistenzde/database-timezone",
-    "type": "library",
+    "type": "symfony-bundle",
     "homepage": "https://github.com/assistenzde/database-timezone",
     "description": "Unified database time zone values",
     "keywords": [
