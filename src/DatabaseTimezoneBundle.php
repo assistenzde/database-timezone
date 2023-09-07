@@ -10,12 +10,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 /**
  * Class DatabaseTimezoneBundle
  *
- * @todo integration tests
- * @todo .gitignore (.phpunit.result.cache)
- * @todo to github, to packagist
- * @todo LICENSE
- * @todo README.md (php 7.4 (datetimeimmuteable + typed properties)
- * @todo CHANGELOG
+ * @todo add integration tests
+ * @todo implement doctrine DBAL datetimeimmuteable type
+ * @todo switch to symfony6 / php8, i.e. typed properties
  */
 class DatabaseTimezoneBundle extends Bundle
 {
