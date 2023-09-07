@@ -4,6 +4,7 @@ declare( strict_types=1 );
 
 namespace Assistenzde\DatabaseTimezoneBundle\Event;
 
+use Assistenzde\DatabaseTimezoneBundle\Doctrine\DBAL\Type\DateType;
 use Assistenzde\DatabaseTimezoneBundle\Doctrine\DBAL\Type\DateTimeType;
 
 class KernelEvent
@@ -30,6 +31,7 @@ class KernelEvent
      */
     public function updateKernelTimezone()
     {
+        DateType::setDatabaseTimezone(new \DateTimeZone($this->timezoneName));
         DateTimeType::setDatabaseTimezone(new \DateTimeZone($this->timezoneName));
     }
 }

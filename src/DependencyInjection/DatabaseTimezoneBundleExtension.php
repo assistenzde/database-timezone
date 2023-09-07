@@ -5,6 +5,7 @@ declare( strict_types=1 );
 namespace Assistenzde\DatabaseTimezoneBundle\DependencyInjection;
 
 use Assistenzde\DatabaseTimezoneBundle\Doctrine\DBAL\Type\DateTimeType;
+use Assistenzde\DatabaseTimezoneBundle\Doctrine\DBAL\Type\DateType;
 use Exception;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -52,7 +53,11 @@ class DatabaseTimezoneBundleExtension extends Extension implements PrependExtens
                 $_config[ 'dbal' ][ 'types' ] = [];
             }
 
-            if( array_key_exists('datetime', $_config[ 'dbal' ][ 'types' ]) )
+            if( array_key_exists('date', $_config[ 'dbal' ][ 'types' ]) )
+            {
+                throw new \RuntimeException('DBAL type "date" was already set - please check config parameter "doctrine.dbal.types.date".');
+            }
+            elseif( array_key_exists('datetime', $_config[ 'dbal' ][ 'types' ]) )
             {
                 throw new \RuntimeException('DBAL type "datetime" was already set - please check config parameter "doctrine.dbal.types.datetime".');
             }
@@ -61,6 +66,7 @@ class DatabaseTimezoneBundleExtension extends Extension implements PrependExtens
                 throw new \RuntimeException('DBAL type "datetimetz" was already set - please check config parameter "doctrine.dbal.types.datetimetz".');
             }
 
+            $_config[ 'dbal' ][ 'types' ][ 'date' ]       = DateType::class;
             $_config[ 'dbal' ][ 'types' ][ 'datetime' ]   = DateTimeType::class;
             $_config[ 'dbal' ][ 'types' ][ 'datetimetz' ] = DateTimeType::class;
 
