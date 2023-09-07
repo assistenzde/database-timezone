@@ -16,49 +16,9 @@ use Doctrine\DBAL\Types\DateTimeType as BaseDateTimeType;
  *
  * @link http://docs.doctrine-project.org/projects/doctrine-orm/en/latest/cookbook/working-with-datetime.html
  */
-class DateTimeType extends BaseDateTimeType
+class DateTimeType extends BaseDateTimeType implements TimezonedTypeInterface
 {
-    /**
-     * @var DateTimeZone|null
-     */
-    protected static ?DateTimeZone $databaseTimezone = null;
-
-    /**
-     * @var DateTimeZone|null
-     */
-    protected static ?DateTimeZone $defaultTimezone = null;
-
-    /**
-     * @param DateTimeZone $dateTimeZone
-     */
-    public static function setDatabaseTimezone(DateTimeZone $dateTimeZone)
-    {
-        static::$databaseTimezone = $dateTimeZone;
-    }
-
-    /**
-     * @return DateTimeZone
-     */
-    protected static function getDatabaseTimezone(): DateTimeZone
-    {
-        if( is_null(static::$databaseTimezone) )
-        {
-            static::$databaseTimezone = new DateTimeZone(date_default_timezone_get());
-        }
-        return static::$databaseTimezone;
-    }
-
-    /**
-     * @return DateTimeZone
-     */
-    protected static function getDefaultTimezone(): DateTimeZone
-    {
-        if( is_null(static::$defaultTimezone) )
-        {
-            static::$defaultTimezone = new DateTimeZone(date_default_timezone_get());
-        }
-        return static::$defaultTimezone;
-    }
+    use TimezonedTypeTrait;
 
     /**
      * {@inheritDoc}
